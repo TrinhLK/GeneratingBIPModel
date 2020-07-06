@@ -1,0 +1,9 @@
+# atom control invariants
+-at VirtualMachine -a atom-control
+-at Tomcat -a atom-control
+-at Apache -a atom-control
+-at MySQL -a atom-control
+-at Apps -a atom-control
+
+# compound control reachability
+-ct mlampCompound -a control-reachability

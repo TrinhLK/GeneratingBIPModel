@@ -1,0 +1,273 @@
+package mlamp
+
+	port type Port()
+
+	atom type VirtualMachine()
+		data string occi_core_id
+		data string occi_core_title
+		data string vid
+		data string occi_core_summary
+		export port Port stop()
+		export port Port configure()
+		export port Port deploy()
+		export port Port none()
+		export port Port start()
+		export port Port undeploy()
+
+		place Active, Deployed, Inactive, Undeployed, Error
+
+		initial to Undeployed do {}
+		on stop from Active to Inactive do {}
+		on undeploy from Active to Undeployed do {}
+		on none from Active to Error do {}
+		on undeploy from Deployed to Undeployed do {}
+		on configure from Deployed to Inactive do {}
+		on none from Deployed to Error do {}
+		on configure from Inactive to Inactive do {}
+		on start from Inactive to Active do {}
+		on undeploy from Inactive to Undeployed do {}
+		on none from Inactive to Error do {}
+		on deploy from Undeployed to Deployed do {}
+		on start from Undeployed to Active do {}
+		on none from Undeployed to Error do {}
+		on start from Error to Active do {}
+		on deploy from Error to Deployed do {}
+	end
+
+	atom type Tomcat()
+		data string occi_core_id
+		data string occi_core_title
+		data string vid
+		data string occi_core_summary
+		export port Port stop()
+		export port Port configure()
+		export port Port deploy()
+		export port Port none()
+		export port Port start()
+		export port Port undeploy()
+
+		place Active, Deployed, Inactive, Undeployed, Error
+
+		initial to Undeployed do {}
+		on stop from Active to Inactive do {}
+		on undeploy from Active to Undeployed do {}
+		on none from Active to Error do {}
+		on undeploy from Deployed to Undeployed do {}
+		on configure from Deployed to Inactive do {}
+		on none from Deployed to Error do {}
+		on configure from Inactive to Inactive do {}
+		on start from Inactive to Active do {}
+		on undeploy from Inactive to Undeployed do {}
+		on none from Inactive to Error do {}
+		on deploy from Undeployed to Deployed do {}
+		on start from Undeployed to Active do {}
+		on none from Undeployed to Error do {}
+		on start from Error to Active do {}
+		on deploy from Error to Deployed do {}
+	end
+
+	atom type Apache()
+		data string occi_core_id
+		data string occi_core_title
+		data string vid
+		data string occi_core_summary
+		export port Port stop()
+		export port Port configure()
+		export port Port deploy()
+		export port Port none()
+		export port Port start()
+		export port Port undeploy()
+
+		place Active, Deployed, Inactive, Undeployed, Error
+
+		initial to Undeployed do {}
+		on stop from Active to Inactive do {}
+		on undeploy from Active to Undeployed do {}
+		on none from Active to Error do {}
+		on undeploy from Deployed to Undeployed do {}
+		on configure from Deployed to Inactive do {}
+		on none from Deployed to Error do {}
+		on configure from Inactive to Inactive do {}
+		on start from Inactive to Active do {}
+		on undeploy from Inactive to Undeployed do {}
+		on none from Inactive to Error do {}
+		on deploy from Undeployed to Deployed do {}
+		on start from Undeployed to Active do {}
+		on none from Undeployed to Error do {}
+		on start from Error to Active do {}
+		on deploy from Error to Deployed do {}
+	end
+
+	atom type MySQL()
+		data string occi_core_id
+		data string occi_core_title
+		data string vid
+		data string occi_core_summary
+		export port Port stop()
+		export port Port configure()
+		export port Port deploy()
+		export port Port none()
+		export port Port start()
+		export port Port undeploy()
+
+		place Active, Deployed, Inactive, Undeployed, Error
+
+		initial to Undeployed do {}
+		on stop from Active to Inactive do {}
+		on undeploy from Active to Undeployed do {}
+		on none from Active to Error do {}
+		on undeploy from Deployed to Undeployed do {}
+		on configure from Deployed to Inactive do {}
+		on none from Deployed to Error do {}
+		on configure from Inactive to Inactive do {}
+		on start from Inactive to Active do {}
+		on undeploy from Inactive to Undeployed do {}
+		on none from Inactive to Error do {}
+		on deploy from Undeployed to Deployed do {}
+		on start from Undeployed to Active do {}
+		on none from Undeployed to Error do {}
+		on start from Error to Active do {}
+		on deploy from Error to Deployed do {}
+	end
+
+	atom type Apps()
+		data string occi_core_id
+		data string occi_core_title
+		data string vid
+		data string occi_core_summary
+		export port Port stop()
+		export port Port configure()
+		export port Port deploy()
+		export port Port none()
+		export port Port start()
+		export port Port undeploy()
+
+		place Active, Deployed, Inactive, Undeployed, Error
+
+		initial to Undeployed do {}
+		on stop from Active to Inactive do {}
+		on undeploy from Active to Undeployed do {}
+		on none from Active to Error do {}
+		on undeploy from Deployed to Undeployed do {}
+		on configure from Deployed to Inactive do {}
+		on none from Deployed to Error do {}
+		on configure from Inactive to Inactive do {}
+		on start from Inactive to Active do {}
+		on undeploy from Inactive to Undeployed do {}
+		on none from Inactive to Error do {}
+		on deploy from Undeployed to Deployed do {}
+		on start from Undeployed to Active do {}
+		on none from Undeployed to Error do {}
+		on start from Error to Active do {}
+		on deploy from Error to Deployed do {}
+	end
+
+	connector type Connectorapache_tomcat1_block_16_46_1(Port p1, Port p2)
+		export port Port ep()
+		define p1' p2
+	end
+	connector type Connectorapache_tomcat1(Port p1, Port p2)
+		define p1' p2
+	end
+
+	connector type Connectorproperty_11(Port p1)
+		define p1
+	end
+
+	compound type mlampCompound()
+		component Tomcat t0()
+		component Tomcat t1()
+		component Tomcat t2()
+		component MySQL m0()
+		component MySQL m2()
+		component Apache as0()
+		component Apache as1()
+		component Apps la0()
+		component Apps la1()
+
+		connector Connectorapache_tomcat1_block_16_46_1 Connectorapache_tomcat11_block_13_36_1_detail(t0.start, as0.start)
+		connector Connectorapache_tomcat1 Connectorapache_tomcat11_detail(m0.start, Connectorapache_tomcat11_block_13_36_1_detail.ep)
+
+		connector Connectorapache_tomcat1_block_16_46_1 Connectorapache_tomcat12_block_13_36_1_detail(t1.start, as0.start)
+		connector Connectorapache_tomcat1 Connectorapache_tomcat12_detail(m0.start, Connectorapache_tomcat12_block_13_36_1_detail.ep)
+
+		connector Connectorapache_tomcat1_block_16_46_1 Connectorapache_tomcat13_block_13_36_1_detail(t2.start, as0.start)
+		connector Connectorapache_tomcat1 Connectorapache_tomcat13_detail(m0.start, Connectorapache_tomcat13_block_13_36_1_detail.ep)
+
+		connector Connectorapache_tomcat1_block_16_46_1 Connectorapache_tomcat14_block_13_36_1_detail(t0.start, as0.start)
+		connector Connectorapache_tomcat1 Connectorapache_tomcat14_detail(m2.start, Connectorapache_tomcat14_block_13_36_1_detail.ep)
+
+		connector Connectorapache_tomcat1_block_16_46_1 Connectorapache_tomcat15_block_13_36_1_detail(t0.start, as1.start)
+		connector Connectorapache_tomcat1 Connectorapache_tomcat15_detail(m0.start, Connectorapache_tomcat15_block_13_36_1_detail.ep)
+
+		connector Connectorapache_tomcat1_block_16_46_1 Connectorapache_tomcat16_block_13_36_1_detail(t1.start, as0.start)
+		connector Connectorapache_tomcat1 Connectorapache_tomcat16_detail(m2.start, Connectorapache_tomcat16_block_13_36_1_detail.ep)
+
+		connector Connectorapache_tomcat1_block_16_46_1 Connectorapache_tomcat17_block_13_36_1_detail(t1.start, as1.start)
+		connector Connectorapache_tomcat1 Connectorapache_tomcat17_detail(m0.start, Connectorapache_tomcat17_block_13_36_1_detail.ep)
+
+		connector Connectorapache_tomcat1_block_16_46_1 Connectorapache_tomcat18_block_13_36_1_detail(t2.start, as0.start)
+		connector Connectorapache_tomcat1 Connectorapache_tomcat18_detail(m2.start, Connectorapache_tomcat18_block_13_36_1_detail.ep)
+
+		connector Connectorapache_tomcat1_block_16_46_1 Connectorapache_tomcat19_block_13_36_1_detail(t2.start, as1.start)
+		connector Connectorapache_tomcat1 Connectorapache_tomcat19_detail(m0.start, Connectorapache_tomcat19_block_13_36_1_detail.ep)
+
+		connector Connectorapache_tomcat1_block_16_46_1 Connectorapache_tomcat110_block_13_36_1_detail(t0.start, as1.start)
+		connector Connectorapache_tomcat1 Connectorapache_tomcat110_detail(m2.start, Connectorapache_tomcat110_block_13_36_1_detail.ep)
+
+		connector Connectorapache_tomcat1_block_16_46_1 Connectorapache_tomcat111_block_13_36_1_detail(t1.start, as1.start)
+		connector Connectorapache_tomcat1 Connectorapache_tomcat111_detail(m2.start, Connectorapache_tomcat111_block_13_36_1_detail.ep)
+
+		connector Connectorapache_tomcat1_block_16_46_1 Connectorapache_tomcat112_block_13_36_1_detail(t2.start, as1.start)
+		connector Connectorapache_tomcat1 Connectorapache_tomcat112_detail(m2.start, Connectorapache_tomcat112_block_13_36_1_detail.ep)
+
+		connector Connectorproperty_11 Connectorproperty_111_detail(prop: => la0.Active >= 1 and m0)
+
+		connector Connectorproperty_11 Connectorproperty_112_detail(prop: => la0.Active >= 1 and m0)
+
+		connector Connectorproperty_11 Connectorproperty_113_detail(prop: => la0.Active >= 1 and m0)
+
+		connector Connectorproperty_11 Connectorproperty_114_detail(prop: => la0.Active >= 1 and m2)
+
+		connector Connectorproperty_11 Connectorproperty_115_detail(prop: => la0.Active >= 1 and m0)
+
+		connector Connectorproperty_11 Connectorproperty_116_detail(prop: => la1.Active >= 1 and m0)
+
+		connector Connectorproperty_11 Connectorproperty_117_detail(prop: => la0.Active >= 1 and m2)
+
+		connector Connectorproperty_11 Connectorproperty_118_detail(prop: => la0.Active >= 1 and m0)
+
+		connector Connectorproperty_11 Connectorproperty_119_detail(prop: => la1.Active >= 1 and m0)
+
+		connector Connectorproperty_11 Connectorproperty_1110_detail(prop: => la0.Active >= 1 and m2)
+
+		connector Connectorproperty_11 Connectorproperty_1111_detail(prop: => la0.Active >= 1 and m0)
+
+		connector Connectorproperty_11 Connectorproperty_1112_detail(prop: => la1.Active >= 1 and m0)
+
+		connector Connectorproperty_11 Connectorproperty_1113_detail(prop: => la0.Active >= 1 and m2)
+
+		connector Connectorproperty_11 Connectorproperty_1114_detail(prop: => la1.Active >= 1 and m2)
+
+		connector Connectorproperty_11 Connectorproperty_1115_detail(prop: => la1.Active >= 1 and m0)
+
+		connector Connectorproperty_11 Connectorproperty_1116_detail(prop: => la0.Active >= 1 and m2)
+
+		connector Connectorproperty_11 Connectorproperty_1117_detail(prop: => la1.Active >= 1 and m2)
+
+		connector Connectorproperty_11 Connectorproperty_1118_detail(prop: => la1.Active >= 1 and m0)
+
+		connector Connectorproperty_11 Connectorproperty_1119_detail(prop: => la0.Active >= 1 and m2)
+
+		connector Connectorproperty_11 Connectorproperty_1120_detail(prop: => la1.Active >= 1 and m2)
+
+		connector Connectorproperty_11 Connectorproperty_1121_detail(prop: => la1.Active >= 1 and m0)
+
+		connector Connectorproperty_11 Connectorproperty_1122_detail(prop: => la1.Active >= 1 and m2)
+
+		connector Connectorproperty_11 Connectorproperty_1123_detail(prop: => la1.Active >= 1 and m2)
+
+		connector Connectorproperty_11 Connectorproperty_1124_detail(prop: => la1.Active >= 1 and m2)
+
+	end
+end
