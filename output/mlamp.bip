@@ -170,10 +170,6 @@ package mlamp
 		define p1' p2
 	end
 
-	connector type Connectorproperty_11(Port p1)
-		define p1
-	end
-
 	compound type mlampCompound()
 		component Tomcat t0()
 		component Tomcat t1()
