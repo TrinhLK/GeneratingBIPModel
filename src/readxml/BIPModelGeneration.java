@@ -515,7 +515,8 @@ public class BIPModelGeneration {
 													Node node = nodeMap.item(j);
 													if (node.getNodeName().equals("id")) {
 														System.out.println("Normal anno: " + node.getNodeValue().replaceAll("-", "_") + "\t" + curAnno.getTextContent());
-														listAnnotation.add(new Annotation(node.getNodeValue().replaceAll("-", "_"), curAnno.getTextContent()));
+														if (!curAnno.getTextContent().contains("prop: ") && !curAnno.getTextContent().contains("data: "))
+															listAnnotation.add(new Annotation(node.getNodeValue().replaceAll("-", "_"), curAnno.getTextContent()));
 													}
 												}
 											}
